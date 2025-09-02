@@ -34,8 +34,19 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/catalog:${{ env.SHORT_SHA }}
 
       - name: Update deployment image tag
+        env:
+          SHORT_SHA: ${{ env.SHORT_SHA }}
         run: |
           sed -i "s|\(image: .*/catalog:\).*|\1${SHORT_SHA}|" apis/catalog/k8s/deployment.yaml
+
+      - name: Set up Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Set up authentication for pushing
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5

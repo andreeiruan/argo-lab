@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: catalog-container
-          image: andreeeiruan/catalog:1.0.0
+          image: andreeeiruan/catalog:186bc04
           resources:
             limits:
               memory: "128Mi"
