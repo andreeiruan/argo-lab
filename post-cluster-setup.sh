@@ -75,13 +75,14 @@ metadata:
   name: argocd-server
   namespace: argocd
   annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
-  - host: argocd.example.com
+  - host: argocd.local.com
     http:
       paths:
       - path: /

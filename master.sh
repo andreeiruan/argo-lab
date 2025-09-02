@@ -30,3 +30,10 @@ echo "After all workers are ready, run: sudo bash /vagrant/post-cluster-setup.sh
 
 kubeadm token create --print-join-command > /vagrant/join-command.sh
 chmod +x /vagrant/join-command.sh
+
+mkdir -p /home/vagrant/.kube
+
+cp /etc/kubernetes/admin.conf /home/vagrant/.kube/config
+chown vagrant:vagrant /home/vagrant/.kube/config
+
+echo "alias k='kubectl'" >> /home/vagrant/.bashrc 
