@@ -14,6 +14,7 @@ spec:
       labels:
         app: catalog
     spec:
+      serviceAccountName: my-app-sa
       containers:
         - name: catalog-container
           image: andreeeiruan/catalog:186bc04
